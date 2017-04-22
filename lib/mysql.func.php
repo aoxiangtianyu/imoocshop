@@ -13,7 +13,6 @@ function insert($table,$array){
     $sql="insert into {$table}($keys) values({$vals})";
     mysql_query($sql);
     $a=mysql_insert_id();
-    var_dump($a);
     return $a;
 }
 // 更新数据
