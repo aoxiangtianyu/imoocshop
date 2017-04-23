@@ -31,8 +31,8 @@ function addadmin(){
     }
     return $mes;
 }
-function getalladmin(){
-    $sql="select id,username,email from imooc_admin";
+function getalladmin($where=null){
+    $sql="select id,username,email from imooc_admin {$where}";
     $rows=fetchall($sql);
     return $rows;
 }
@@ -53,5 +53,21 @@ function deladmin($id){
         $mes="删除失败！<br /><a href='listadmin.php'>重新删除</a>";
     }
     return $mes;
+}
+function getadminbypage($pagesize=2){
+    $sql="select * from imooc_admin";
+    $totalrows=getresultnum($sql);
+    global $totalpage;
+    $totalpage=ceil($totalrows/$pagesize);
+    global $page;
+    $page=$_REQUEST['page']?(int)$_REQUEST['page']:1;
+    if($page<1||$page==null||!is_numeric($page)){
+        $page=1;
+    }
+    if($page>=$totalpage) $page=$totalpage;
+    $offset=($page-1)*$pagesize;
+    $sql="select * from imooc_admin limit {$offset},{$pagesize}";
+    $rows=fetchall($sql);
+    return $rows;
 }
  ?>

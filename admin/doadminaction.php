@@ -11,9 +11,9 @@ if($act=="logout"){
 	$mes=editadmin($id);
 }elseif($act=="deladmin"){
 	$mes=deladmin($id);
+}elseif($act=="addCate"){
+	$mes=addCate();
 }
-// }elseif($act=="addCate"){
-// 	$mes=addCate();
 // }elseif($act=="editCate"){
 // 	$where="id={$id}";
 // 	$mes=editCate($where);

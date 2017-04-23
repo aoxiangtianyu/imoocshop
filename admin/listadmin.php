@@ -1,26 +1,11 @@
 <?php
 require_once '../include.php';
-connect();
-$rows=getalladmin();
+$pagesize=2;
+$rows=getadminbypage();
 if(!$rows){
     alertMes("sorry,没有管理员，请添加！","addadmin.php");
     exit;
 }
-// $page=$_REQUEST['page']?(int)$_REQUEST['page']:1;
-// $sql="select * from imooc_cate";
-// $totalRows=getResultNum($sql);
-// $pageSize=2;
-// $totalPage=ceil($totalRows/$pageSize);
-// if($page<1||$page==null||!is_numeric($page))$page=1;
-// if($page>=$totalPage)$page=$totalPage;
-// $offset=($page-1)*$pageSize;
-// connect();
-// $sql="select id,username,email from imooc_admin  order by id asc ";//limit {$offset},{$pageSize}";
-// $rows=fetchAll($sql);
-// if(!$rows){
-// 	alertMes("sorry,没有分类,请添加!","addCate.php");
-// 	exit;
-// }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -47,12 +32,12 @@ if(!$rows){
                 </tr>
             </thead>
             <tbody>
-            <?php $i=1; foreach($rows as $row):?>
+            <?php foreach($rows as $row):?>
                 <tr>
                     <!--这里的id和for里面的c1 需要循环出来-->
                     <td><input type="checkbox" id="c1" class="check">
                         <label for="c1" class="label">
-                            <?php echo $i;?>
+                            <?php echo $row['id'];?>
                         </label>
                     </td>
                     <td><?php echo $row['username'];?></td>
@@ -62,12 +47,12 @@ if(!$rows){
                         <input type="button" value="删除" class="btn"  onclick="deladmin(<?php echo $row['id'];?>)">
                     </td>
                 </tr>
-                <?php $i++; endforeach;?>
-                <!-- <?php if($totalRows>$pageSize):?>
+                <?php endforeach;?>
+                <?php if($rows>$pagesize):?>
                 <tr>
-                	<td colspan="4"><?php echo showPage($page, $totalPage);?></td>
+                	<td colspan="4"><?php echo showpage($page, $totalpage);?></td>
                 </tr>
-                <?php endif;?> -->
+                <?php endif;?>
             </tbody>
         </table>
     </div>
