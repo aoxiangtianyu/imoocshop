@@ -8,4 +8,25 @@ function addCate(){
     }
     return $mes;
 }
+function getCateById($id){
+    $sql="select id,cName from imooc_cate where id={$id}";
+    return fetchone($sql);
+}
+function editCate($where){
+    $arr=$_POST;
+    if(update('imooc_cate',$arr,$where)){
+        $mes="分类修改成功！<br /><a href='listCate.php'>查看分类</a>";
+    }else{
+        $mes="分类修改失败！<br /><a href='listCate.php'>重新修改</a>";
+    }
+    return $mes;
+}
+function delCate($where){
+    if(delete("imooc_cate",$where)){
+        $mes="分类删除成功！<br /><a href='listCate.php'>查看分类</a>| <a href='addCate.php'>添加分类</a>";
+    }else{
+        $mes="分类删除失败！<br /><a href='listCate.php'>请重新操作</a>";
+    }
+    return $mes;
+}
 ?>

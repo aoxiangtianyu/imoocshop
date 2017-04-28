@@ -35,7 +35,7 @@ function update($table,$array,$where=null){
 }
 // 删除数据
 function delete($table,$where=null){
-    $where=$where==null?null:" where ".$where;
+    $where=$where==null?null:" where id=".$where;
     $sql="delete from {$table} {$where}";
     mysql_query($sql);
     return mysql_affected_rows();

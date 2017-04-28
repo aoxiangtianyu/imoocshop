@@ -13,12 +13,12 @@ if($act=="logout"){
 	$mes=deladmin($id);
 }elseif($act=="addCate"){
 	$mes=addCate();
+}elseif($act=="editCate"){
+	$where="id={$id}";
+	$mes=editCate($where);
+}elseif($act=="delCate"){
+	$mes=delCate($id);
 }
-// }elseif($act=="editCate"){
-// 	$where="id={$id}";
-// 	$mes=editCate($where);
-// }elseif($act=="delCate"){
-// 	$mes=delCate($id);
 // }elseif($act=="addPro"){
 // 	$mes=addPro();
 // }elseif($act=="editPro"){
